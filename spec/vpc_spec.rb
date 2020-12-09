@@ -20,6 +20,9 @@ RSpec.describe 'VPC' do
   describe route_table("#{iac_tool}-public") do
     it { is_expected.to have_route('10.0.0.0/16').target(gateway: 'local') }
     it { is_expected.to have_route('0.0.0.0/0').target(gateway: iac_tool) }
+    it { is_expected.to have_subnet("#{iac_tool}-public-eu-west-1a") }
+    it { is_expected.to have_subnet("#{iac_tool}-public-eu-west-1b") }
+    it { is_expected.to have_subnet("#{iac_tool}-public-eu-west-1c") }
   end
 
   describe internet_gateway(iac_tool) do
